@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  {{> head}}
+  <body>
+    {{> header}}
+    {{#tagged.is.micro}}
+    <div class="container">   
+      <div class="main">
+      	<span class="fleet-text">
+        	These are fleets.  They represent fleeting thoughts that don't warrant
+            a full post.  They used to be called tweets.  Now they live here; thanks to Elon.
+        </span>
+        <br><br>
+    	{{#entries}}
+        <div class="fleetcard">
+        {{{html}}}
+        </div>
+        {{/entries}}
+    </div>
+    </div>
+	{{/tagged.is.micro}}
+	{{^tagged.is.micro}}
+    <div class="container">   
+      <div class="main">
+      <form action='/search' >
+          <input placeholder="Search..." value="{{#query}}{{query}}{{/query}}" name="q" id="search" type="text" />
+        </form>
+          <h2>Tags  ({{popular_tags.length}})</h2>
+		{{#popular_tags.length}}        
+        <div class="tags" >
+      		<div >
+      			{{#popular_tags}}
+      			<a href="/tagged/{{slug}}" {{#active}}style="font-weight:600"{{/active}} title="{{tag}}">{{tag}} · </a>
+      			{{/popular_tags}}
+    		</div>
+    	</div>
+		{{/popular_tags.length}} 
+        <br>
+        <h2>{{tag}} ({{entries.length}})</h2>
+        <div class="archives">
+          {{#entries}}
+       		<div class="row">
+        	<div class="column left">          		
+          		<a href="{{{url}}}">{{title}}
+          			{{#tagged.linkpost}}
+		  			&#x21FE;
+		  			{{/tagged.linkpost}}
+          		</a>
+            </div>
+          	<div class="column right">
+          		<span class="smalldate">{{date}}</span>
+        	</div>
+        	</div>
+          {{/entries}}
+    
+        </div> 
+        <br>
+		<span class="smallindex"><a href="/archives">&#11109; Back to Index</a></span>
+     {{/tagged.is.micro}}
+    {{> footer}}
+  </body>
+</html>

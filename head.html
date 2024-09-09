@@ -1,0 +1,27 @@
+<head>
+	<link href="https://api.fontshare.com/v2/css?f[]=gambetta@400,1,300,600,701,2,501,401,301,601,500,700&f[]=general-sans@701,200,500,301,201,1,300,2,601,600,401,501,400,700&f[]=azeret-mono@2,1&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{> title}}</title>
+    <meta name="description" content="{{> description}}">
+    
+    <!-- Begin proprietary meta tags for sharing on social media -->
+    <meta property="og:title" content="{{> title}}">
+    <meta property="og:description" content="{{> description}}">
+    <meta property="og:type" content="website">
+    {{#entry}}
+    {{#thumbnail.large}}
+    <meta property="og:image" content="{{{url}}}">
+    <meta name="twitter:card" content="summary_large_image">
+    {{/thumbnail.large}}
+    <meta property="og:url" content="{{{absoluteURL}}}">
+    {{/entry}}
+    <!-- End proprietary meta tags for sharing on social media -->
+
+    <link rel="alternate" type="application/rss+xml" title="{{title}}" href="{{{blogURL}}}{{{feedURL}}}">
+    {{#avatar}}<link rel="icon" href="{{{avatar}}}" type="image/x-icon">{{/avatar}}
+    <link rel="stylesheet" href="{{{cssURL}}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/galleria.min.js"></script>
+</head>

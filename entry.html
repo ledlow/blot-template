@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  {{> head}}
+  <body class="navigation-location-{{navigation_location}}">
+    {{> header}}
+    <div class="container">
+      <div class="main">
+        <div class="entry">
+        {{#entry}}
+          
+          {{{html}}}
+          {{#tags.length}}
+        
+          <div class="emailform">
+        <span class="caption">To have new posts automatically sent to your inbox, subscribe below.</span>
+             <form action="https://feedmail.org/subscriptions/confirm" 
+             style="display: flex; flex-direction: row; align-items: center; justify-content: center; width: 100%;">
+                <input style="font-family: 'Open Sans', sans-serif; color: rgb(209, 102, 72); font-size: 14px; margin: 0px 10px 0px 0px; width: 100%; max-width: 300px; min-width: 100px; background: rgb(255, 255, 255); border: 1px solid rgb(209, 213, 219); box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px; border-radius: 6px; padding: 8px 12px;" type="email" name="email" required="" placeholder="Email Address">
+                <input type=hidden name=url value="https://tangiblelife.net/feed.rss">
+                <input type=hidden name=r value="https://tangiblelife.net/archives">
+                
+                <button type="submit" class="email-form-button" style="background: rgb(209, 102, 72); font-size: 15px; color: rgb(255, 255, 255); font-family: 'Open Sans', sans-serif; display: flex; width: min-content; max-width: 300px; white-space: nowrap; height: 38px; align-items: center; justify-content: center; flex-direction: row; padding: 9px 17px; box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px; border-radius: 6px; text-align: center; font-style: normal; font-weight: 500; line-height: 20px; border: medium; cursor: pointer;">Subscribe</button>
+             </form>
+        </div>
+          <div class="row">
+        	<div class="column leftpostfooter">          		
+				<span class="small">Tags:</span><br>
+                <span class="small">Date:</span><br>
+                <!-- <span class="small">Next Post:</span><br>
+                <span class="small">Previous Post:</span> -->
+            </div>
+          	<div class="column rightpostfooter">
+				{{#tags}}
+         			<a class="small tag" href="/tagged/{{slug}}">{{name}}&nbsp;&nbsp;</a>	
+                {{/tags}}<br>
+                {{#date}}
+                	<span class="small">{{date}}</span>
+                {{/date}}<br>
+                <!-- {{#next}}
+          			<a class="link" href="{{{url}}}"><span class="smalllink">{{title}}</span></a>          
+         		{{/next}}<br>
+                {{#previous}}
+          			<a class="link" href="{{{url}}}"><span class="smalllink">{{title}}</span></a>                   
+          		{{/previous}} --><br>
+                
+        	</div>
+            </div>
+            
+        <br>
+        <span class="smallindex"><a href="/archives">&#11109; Site Index</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="/random">&#x21bb; Random Post</a></span>
+        {{/tags.length}}
+        <div class="clear"></div>
+        {{> pluginHTML}}
+        <div class="clear"></div>
+        
+ 		{{/entry}}
+        {{> footer}}
+      </div>
+    </div>
+  </body>
+</html>

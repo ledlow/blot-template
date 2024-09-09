@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  {{> head}}
+  <body>
+    {{> header}}
+    <div class="container">
+      <div class="main">
+        <form action='/search' >
+          <input placeholder="Search..." value="{{#query}}{{query}}{{/query}}" name="q" id="search" type="text" />
+        </form>
+        <h2>Tags</h2>
+		{{#popular_tags.length}}
+	  <div class="tags" >
+      <div>
+      {{#popular_tags}}
+      <a href="/tagged/{{slug}}" {{#active}}style="font-weight:600"{{/active}} 
+      title="{{tag}}">{{tag}} · </a>
+      {{/popular_tags}}
+    </div>
+    </div>
+{{/popular_tags.length}}    
+		
+        <!-- <h2>Posts ({{all_entries.length}})</h2> -->
+       {{#archives}}
+       {{^tagged.micro}}
+       <h2>{{year}}</h2>
+       {{/tagged.micro}}
+		{{#months}}
+       {{#entries}}
+       {{^tagged.micro}}
+       <div class="row">
+        	<div class="column left">          		
+          		<a href="{{{url}}}">{{title}}
+          			{{#tagged.linkpost}}
+		  			&#x21FE;
+		  			{{/tagged.linkpost}}
+          		</a>
+            </div>
+          	<div class="column right">
+          		<span class="smalldate">{{date}}</span>
+        	</div>
+        </div>
+        {{/tagged.micro}}
+        {{/entries}}
+        {{/months}}
+        {{/archives}}
+        
+        {{> footer}}
+      </div>
+    </div>
+  </body>
+</html>

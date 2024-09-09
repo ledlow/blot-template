@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  {{> head}}
+  <body>
+    {{> header}}
+    <div class="container">
+      <div class="main">
+        {{#entries}}
+        {{^tagged.micro}}
+          {{#is.index_layout.post_in_full}}
+          <div class="entry on-index-page" data-url="{{{url}}}">
+            {{{html}}}
+            <!-- <h1><a class="entries" href="{{{url}}}">{{{title}}}
+            {{#tagged.linkpost}}
+		  			&#x21FE;
+		  	{{/tagged.linkpost}}
+            </a></h1>
+            {{{body}}} -->
+            <p>
+              <a class="small date" href="{{{url}}}">{{date}}</a>
+              {{#tags}}
+              <!-- <a class="small tag" href="/tagged/{{slug}}">{{name}}</a> -->
+              {{/tags}}
+              <hr>
+              </p>
+            <div class="clear"></div>
+          </div>
+          {{/is.index_layout.post_in_full}}            
+		{{/tagged.micro}}
+        {{/entries}}
+
+        {{#pagination}}
+        <div class="pagination">
+          {{#previous}}
+            <a href="/page/{{previous}}">&larr; Newer</a>
+          {{/previous}}
+          Page {{current}} of {{total}}
+          {{#next}}
+            <a href="/page/{{next}}">Older &rarr;</a>
+          {{/next}}
+        </div>
+        {{/pagination}}
+        
+        {{> footer}}
+      </div>
+    </div>
+
+  </body>
+</html>

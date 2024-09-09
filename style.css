@@ -1,0 +1,773 @@
+/* Inserts the styles required by various options
+on the services page of the dashboard */
+{{{appCSS}}}
+
+/* Will be replaced with the @font-face rules required
+to load whichever fonts are selected. Duplicates should
+be caught my the CSS minifier */
+{{{body_font.styles}}}
+{{{navigation_font.styles}}}
+{{{coding_font.styles}}}
+{{{syntax_highlighter.styles}}}
+
+html {
+  {{#body_font}}
+  font-family: {{{stack}}};
+  font-weight: 400;
+  font-size: {{{font_size}}}px;
+  line-height: {{{line_height}}};
+  {{/body_font}}
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  color: {{text_color}};
+  background: {{background_color}};
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.clear {width: 100%;clear: both;float: none;display: block;height: 0}
+
+.small {color:{{text_color}};font-weight:400;opacity:0.6;font-style:italic;}
+.smalllink {color:{{accent_color}};font-weight:500;opacity:0.75;font-style:italic;}
+.smallindex {font-size: 1rem; color:{{text_color}};font-weight:400;}
+.smallabout {font-family: "General Sans", sans-serif; font-size: 1.1rem; color:{{text_color}};font-weight:500;letter-spacing: 2.0px; font-variant: small-caps;}
+.smalldate {color:{{text_color}};font-family: 'Azeret Mono', sans-serif; letter-spacing: -1px; font-size: .85rem; font-weight:300;opacity:0.5;font-style: italic;}
+.caption {font-size: .8125rem;color: #CC6324;font-weight: 400;opacity:0.8}
+
+.fleet-text {
+	display: block;
+	text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+	font-style: italic;
+    letter-spacing: 1.0px;
+    margin-bottom: -1em;
+}
+
+.caption {
+  display: block;
+  padding: 0.5rem 2rem;
+  text-align: center;
+  max-width: 1060px;
+  font-style: italic;
+  font-family: "General Sans", sans-serif;
+}
+
+.emailform {
+	background-color: rgba(226, 228, 225, .7);
+	width: 90%;
+    border: 2px solid rgba(59, 90, 120, .5); 
+    box-sizing: border-box; 
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px;
+    border-radius: 6px; padding: 8px 12px;
+    padding-bottom: 1.3rem;
+	margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.fleetcard {
+	background-color: rgba(226, 228, 225, .7);
+	width: 90%;
+    border: 2px solid rgba(161, 58, 45, .6);
+    box-sizing: border-box; 
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px;
+    border-radius: 6px; 
+    padding: 0 1.5rem 0 1.5rem;
+	margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.right {float: right;}
+.left {float: left;}
+
+div {
+  margin: 0 auto;
+  overflow: visible;
+  position: relative;
+}
+
+div.header {
+  {{#navigation_font}}
+  font-family: {{{stack}}};
+  font-size: {{{font_size}}}px;
+  line-height: {{{line_height}}};
+  letter-spacing: 1px;
+  border-bottom: 2px solid {{accent_color}};
+  {{/navigation_font}}
+  padding: 0.5rem 1.3rem 0.1rem;
+  position: fixed;
+  width:100%;
+  display: flex;
+  align-items:baseline;
+  background: #d4d8d3;
+  box-sizing: border-box;
+  z-index: 100;justify-content: space-between;
+  -webkit-backdrop-filter: blur(3px);
+}
+.header.position-top {top:0;}
+.header.position-bottom {bottom:0;}
+
+.header.alignment-center {justify-content: center;}
+.header.alignment-left {justify-content: flex-start;}
+.header.alignment-right {justify-content: flex-end;}
+
+.main {width: 65%;margin: -1em auto;}
+.container {box-sizing:border-box;max-width: 1060px;padding:4rem 2rem;margin-top: 3.7rem;}
+/*.container, .container * {
+  outline:1px solid red
+}*/
+
+.entry {margin: 0 .5em 0 .5em}
+
+/* LAYOUT */
+
+.margin {
+  position: relative;
+  box-sizing: border-box;
+  width: 70%;
+  left: 100%;
+  padding-left: 2rem;
+}
+
+.margin blockquote {margin: 3px 0;padding: 3px 6px;font-size: .875em;line-height:18px;}
+.margin blockquote p {margin: 0;}
+
+.margin p,
+.column p {margin-top: 0}
+
+.margin img,
+.column img {margin-top: 6px}
+
+.margin p {font-size: 0.8em;color:rgba({{#rgb}}{{text_color}}{{/rgb}}, 0.5);}
+
+
+
+.wide {
+    width: calc(100vw - var(--scrollbar-width));
+    margin-left: calc((100vw - var(--scrollbar-width) - 1060px) * -0.5);
+    margin-right: 0;
+}
+
+.wide img {display: block;margin-left: auto;margin-right: auto;}
+@media screen and (max-width: 1146px) {
+  .wide {
+    margin-left: -2rem;
+  }
+}
+
+.wide.left, .wide.right {
+  width: 150%;
+  margin-left: 0;
+  margin-right: -25%;
+  float: none;
+  overflow: auto; /* collapse internal margins */
+}
+
+.column {
+	box-sizing: border-box;
+    padding: .1em;
+}
+
+.left {
+  float: left;
+  width: 74%;
+}
+
+.right {
+  float: right;
+  text-align: right;
+  width: 26%;
+  margin-top: -.1em;
+}
+
+.leftpostfooter {
+  float: left;
+  width: 35%;
+}
+
+.rightpostfooter {
+  float: left;
+  text-align: left;
+  width: 65%;
+}
+
+.column .caption {margin-bottom: 6px}
+
+.column.two {
+  width: 50%;
+  padding-right: 12px;
+}
+
+
+.column.two + .column.two {
+  padding: 0 0 0 12px;
+}
+
+.column.three {width: 33.333333%;padding: 0 16px 0 0;}
+.column.three + .column.three {padding: 0 8px}
+.column.three + .column.three + .column.three {padding: 0 0 0 16px}
+
+.column.four {width: 25%;padding-right: 18px;}
+.column.four + .column.four {padding: 0 12px 0 6px;}
+.column.four + .column.four + .column.four {padding: 0 6px 0 12px;}
+.column.four + .column.four + .column.four + .column.four {padding: 0 0 0 18px;}
+
+
+.column h1,
+.column h2 {margin-bottom: -12px}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* TEXT */
+
+p, li {
+  position: relative;
+  margin: 1.666em 0;
+}
+
+h1 {font-family: "General Sans", sans-serif;font-size: 1.4625em;line-height: 36px;letter-spacing: 1px;font-weight: 600;margin-bottom: 24px;text-wrap:pretty}
+
+h1 a::after {
+	content: '\21FE';
+    padding: 5px;
+}
+
+h2, h3, h4, h5, h6 {font-family: "General Sans", sans-serif;font-size: 1.0625em;letter-spacing: 0.5px; font-weight: 600;line-height: 24px;margin: 24px 0 24px;text-wrap:pretty}
+
+blockquote {
+  padding: 0 0 0 12px;
+  color: {{text_color}};
+  opacity: 0.666;
+  letter-spacing: 0.5pt;
+  border-left: 2px solid {{accent_color}};
+}
+
+p::selction {
+	background: #d4d8d3;
+}
+
+/*
+p .small-caps,
+li .small-caps {
+  font-family: "Georgia Pro SC";
+}*/
+
+big {color: {{text_color}};font-size: 2em;line-height: 48px;display: block;}
+
+/* LINKS */
+
+a {
+  color: {{accent_color}};
+  text-decoration: none;
+}
+
+a:hover {
+  color: #a13a2d;
+}
+
+a::selection {
+  background: #d4d8d3;
+}
+
+a::-moz-selection {
+  background: #d4d8d3;
+}
+
+a:active {
+  opacity: 0.7
+}
+
+a.tag {
+  padding-left: 1.33em;
+  text-decoration: none;
+  background: url('data:image/svg+xml;utf8,<?xml version="1.0" ?><svg height="22px" version="1.1" viewBox="0 0 23 22" width="23px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><defs><path d="M13.1280738,-1.86808672 L6,4.29864327 L6,19.5668775 C6,19.8368658 6.2236826,20.0557345 6.49907685,20.0557345 L20.5009232,20.0557345 C20.7765557,20.0557345 21,19.8329873 21,19.5668775 L21,4.29864327 L13.8719262,-1.86808672 C13.6665171,-2.0457929 13.3292604,-2.04213981 13.1280738,-1.86808672 Z M13.5,7.83351232 C14.6045696,7.83351232 15.5,6.95798032 15.5,5.87795676 C15.5,4.79793321 14.6045696,3.92240121 13.5,3.92240121 C12.3954305,3.92240121 11.5,4.79793321 11.5,5.87795676 C11.5,6.95798032 12.3954305,7.83351232 13.5,7.83351232 L13.5,7.83351232 Z" id="path-1"/></defs><g fill="none" fill-rule="evenodd" id="miu" stroke="none" stroke-width="1"><g id="common_tag_2_general_price_glyph"><use fill="{{#encodeURIComponent}}{{text_color}}{{/encodeURIComponent}}" fill-rule="evenodd" transform="translate(13.500000, 9.000000) rotate(45.000000) translate(-13.500000, -9.000000) " xlink:href="%23path-1"/><use fill="none" xlink:href="%23path-1"/></g></g></svg>') left center/0.94em no-repeat;
+}
+
+a.date {
+  display: none;
+}
+
+/* RULE */
+
+hr {width:70%; margin-top: 4em; margin-bottom: 3.5em; opacity: .5; border-top: 0px; border-left: 0px; border-bottom: 1px solid #3b5a78}
+
+/* CODE */
+
+code {
+  font-family: {{{coding_font.stack}}};
+  margin: 0;
+  font-size: 0.85em;
+  background: rgba(0,0,0,.03);
+  border-radius: 3px;
+  line-height: 24px;
+}
+
+p code {
+  line-height: 1em;
+  padding: 2px;
+  margin-left: -2px;
+  display: inline-block;
+}
+
+/*
+p code:before,
+p code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}*/
+
+pre code {
+  display: block;
+   white-space: pre-wrap;
+}
+pre code {
+  display: block;padding: 12px 18px;
+  margin: 0 0 0 0;
+  background-color: rgba(0,0,0,.02);
+}
+
+/* TABLES */
+
+table {
+  display: block;
+  width: auto;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+  border-collapse: collapse;
+  border-spacing: 0;
+  box-sizing: border-box;
+  font-size: .9375em;
+  line-height: 24px;
+}
+
+tr {box-sizing: border-box;border-top: 1px solid {{text_color}};padding: 0}
+th, td {box-sizing: border-box;border: 1px solid {{text_color}};padding: 5px 12px 6px}
+
+/* LISTS */
+
+ul, ol {
+  margin-left: 0;
+  padding-left: 1.25rem;
+  list-style-position: outside;
+  margin-bottom: 1.6667rem;
+}
+
+li {padding-left: 0.75rem}
+
+ul {list-style: disc;list-style-position: outside;}
+ul.task-list { list-style-type: none; }
+
+ul ul, ol ul, ol ol, ul ol {margin-bottom: 0}
+
+li {margin: 0}
+
+/* IMAGES */
+
+img {display: block;margin: 0 auto;vertical-align: middle;max-width: 95%;height: auto;border-radius: 10px;}
+
+.image {
+  position: relative;
+  border-radius: 8px;
+  height: 0;
+  padding: 0 0 35.504201681%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.about-img {
+	border-style: solid;
+    border-width: 1px;
+    border-color: #d4d8d3;
+    -moz-box-shadow: 0 0 8px #d4d8d3;
+	-webkit-box-shadow: 0 0 8px #d4d8d3;
+	box-shadow: 0px 0px 8px #d4d8d3;
+}
+
+.image img {max-width: 100%; border-radius: 10px;}
+
+.image_container {display: block; border-radius: 10px;}
+
+
+.wide .image_container {margin: 0 auto; border-radius: 10px;}
+.wide p {margin-top: 0}
+
+/* VIDEOS & tweets */
+
+iframe {width: 100%;}
+
+/* Only apply vertical margin to direct
+   descendants, prevents multi margins */
+.entry > iframe {margin: 24px 0!important;}
+
+/* TWEETS */
+
+.entry .twitter-tweet {margin-left:-16px!important}
+
+/* MATH */
+.has-katex {text-align: center;}
+.katex  {font-size: 1.05em;}
+
+
+
+#logo {
+  display: flex;
+  color: {{text_color}};
+  letter-spacing: 2px;
+  padding-top: 0.4em;
+}
+
+
+#logo img {max-width: 36px;max-height: 36px; margin-right: 0.7em;}
+#logo:hover {color: {{accent_color}};}
+
+#logo img.rounded {width: 52px;border-radius: 10%;}
+#logo img:active {margin-top: 0px}
+
+/* Nav links are underlined which affects their optical lineheight */
+div.header a {margin-right: 0.5rem;color: {{text_color}};text-decoration: none}
+div.header a:hover {text-decoration: none;}
+div.header .tags a {opacity: 1.0}
+
+div.header a {opacity: 1;transition: opacity 0.2s ease}
+div.header:hover a {opacity: 1.0}
+
+div.header .nav {
+  display: flex;
+  margin: 0;
+  align-content: baseline;
+  flex-shrink: 0;
+}
+div.header .tags {margin:0 1rem;flex-grow: 1}
+
+.nav a {
+  order: 1;
+  padding-top: 1.5em;
+  margin-bottom: 0.4em;
+}
+
+.nav a[href="/archives"]{
+  order: 1;
+  text-indent: -1000px;
+  overflow: hidden;
+  width: 1.4em;
+  margin-left: 0.5em;
+  margin-right: 1.1em;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.75 -0.75 18 18" height="18" width="18"%3E%3Cg id="bookmark--bookmarks-tags-favorite"%3E%3Cpath id="Vector" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="m12.964285714285715 15.910714285714286 -4.714285714285714 -4.714285714285714 -4.714285714285714 4.714285714285714v-14.142857142857142c0 -0.3125807142857143 0.12417428571428571 -0.6123503571428571 0.3451917857142857 -0.8333761071428573C4.101935357142858 0.7134564642857143 4.401705000000001 0.5892857142857143 4.714285714285714 0.5892857142857143h7.071428571428571c0.31255714285714287 0 0.6123857142857142 0.12417075000000001 0.8333678571428571 0.34519532142857146C12.840064285714286 1.1555067857142858 12.964285714285715 1.4552764285714286 12.964285714285715 1.7678571428571428v14.142857142857142Z" stroke-width="1.5"%3E%3C/path%3E%3C/g%3E%3C/svg%3E') no-repeat center center / 95%;
+}
+
+.nav a:hover[href="/archives"]{
+  order: 1;
+  text-indent: -1000px;
+  overflow: hidden;
+  width: 1.4em;
+  margin-left: 0.5em;
+  margin-right: 1.1em;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.75 -0.75 18 18" height="18" width="18"%3E%3Cg id="bookmark--bookmarks-tags-favorite"%3E%3Cpath id="Vector" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="m12.964285714285715 15.910714285714286 -4.714285714285714 -4.714285714285714 -4.714285714285714 4.714285714285714v-14.142857142857142c0 -0.3125807142857143 0.12417428571428571 -0.6123503571428571 0.3451917857142857 -0.8333761071428573C4.101935357142858 0.7134564642857143 4.401705000000001 0.5892857142857143 4.714285714285714 0.5892857142857143h7.071428571428571c0.31255714285714287 0 0.6123857142857142 0.12417075000000001 0.8333678571428571 0.34519532142857146C12.840064285714286 1.1555067857142858 12.964285714285715 1.4552764285714286 12.964285714285715 1.7678571428571428v14.142857142857142Z" stroke-width="1.5"%3E%3C/path%3E%3C/g%3E%3C/svg%3E') no-repeat center center / 95%;
+}
+
+.nav a[href="/fleets"]{
+  order: 1;
+  text-indent: -1000px;
+  overflow: hidden;
+  width: 1.4em;
+  margin-left: 0.5em;
+  margin-right: 1.1em;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.75 -0.75 18.06 18.06" height="18.06" width="18.06" id="Balloon--Streamline-Core"%3E%3Cdesc%3EBalloon Streamline Icon: https://streamlinehq.com%3C/desc%3E%3Cg id="Balloon--Streamline-Core"%3E%3Cpath id="Vector 1873" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M5.939693485714285 13.331391428571425c0.24192977142857136 3.171831428571428 3.005107714285714 2.786456571428571 4.202064514285714 2.0170079999999997 2.024637428571428 -1.301497714285714 3.3669437142857137 -1.637310857142857 5.752884857142856 -1.4498279999999997" stroke-width="1.5"%3E%3C/path%3E%3Cpath id="Ellipse 609" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M10.692496285714284 5.208794228571428C10.692496285714284 2.8735266857142854 8.564477142857141 0.7392857142857141 5.939575199999998 0.7392857142857141c-2.624890114285714 0 -4.752672685714285 2.134240971428571 -4.752672685714285 4.469508514285714 0 2.3352675428571423 2.127782571428571 4.912204628571427 4.752672685714285 4.912204628571427 2.6249019428571425 0 4.752921085714284 -2.5769370857142855 4.752921085714284 -4.912204628571427Z" stroke-width="1.5"%3E%3C/path%3E%3Cpath id="Vector 1874" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="m5.970980057142856 10.120998857142855 -1.4775778285714283 1.7884799999999996c-0.3186380571428571 0.3856114285714285 -0.044321657142857136 0.9680502857142855 0.45594411428571424 0.9680502857142855h2.002234114285714c0.4964687999999999 0 0.7720035428571427 -0.5747502857142855 0.46108954285714276 -0.9617811428571427L5.970980057142856 10.120998857142855Z" stroke-width="1.5"%3E%3C/path%3E%3C/g%3E%3C/svg%3E') no-repeat center center / 98%;
+}
+
+.nav a:hover[href="/fleets"]{
+  order: 1;
+  text-indent: -1000px;
+  overflow: hidden;
+  width: 1.4em;
+  margin-left: 0.5em;
+  margin-right: 1.1em;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.75 -0.75 18.06 18.06" height="18.06" width="18.06" id="Balloon--Streamline-Core"%3E%3Cdesc%3EBalloon Streamline Icon: https://streamlinehq.com%3C/desc%3E%3Cg id="Balloon--Streamline-Core"%3E%3Cpath id="Vector 1873" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M5.939693485714285 13.331391428571425c0.24192977142857136 3.171831428571428 3.005107714285714 2.786456571428571 4.202064514285714 2.0170079999999997 2.024637428571428 -1.301497714285714 3.3669437142857137 -1.637310857142857 5.752884857142856 -1.4498279999999997" stroke-width="1.5"%3E%3C/path%3E%3Cpath id="Ellipse 609" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M10.692496285714284 5.208794228571428C10.692496285714284 2.8735266857142854 8.564477142857141 0.7392857142857141 5.939575199999998 0.7392857142857141c-2.624890114285714 0 -4.752672685714285 2.134240971428571 -4.752672685714285 4.469508514285714 0 2.3352675428571423 2.127782571428571 4.912204628571427 4.752672685714285 4.912204628571427 2.6249019428571425 0 4.752921085714284 -2.5769370857142855 4.752921085714284 -4.912204628571427Z" stroke-width="1.5"%3E%3C/path%3E%3Cpath id="Vector 1874" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="m5.970980057142856 10.120998857142855 -1.4775778285714283 1.7884799999999996c-0.3186380571428571 0.3856114285714285 -0.044321657142857136 0.9680502857142855 0.45594411428571424 0.9680502857142855h2.002234114285714c0.4964687999999999 0 0.7720035428571427 -0.5747502857142855 0.46108954285714276 -0.9617811428571427L5.970980057142856 10.120998857142855Z" stroke-width="1.5"%3E%3C/path%3E%3C/g%3E%3C/svg%3E') no-repeat center center / 98%;
+}
+
+.nav a[href="/about"]{
+  order: 1;
+  text-indent: -1000px;
+  overflow: hidden;
+  width: 1.4em;
+  margin-left: 0.5em;
+  margin-right: 1.2em;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.75 -0.75 18 18" height="18" width="18" id="User-Profile-Focus--Streamline-Core"%3E%3Cdesc%3EUser Profile Focus Streamline Icon: https://streamlinehq.com%3C/desc%3E%3Cg id="user-profile-focus--close-geometric-human-person-profile-focus-user"%3E%3Cpath id="Vector" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M15.910714285714286 12.375v2.357142857142857c0 0.31255714285714287 -0.12422142857142857 0.6123857142857142 -0.34520357142857144 0.8333678571428571s-0.5208107142857143 0.34520357142857144 -0.8333678571428571 0.34520357142857144h-2.357142857142857" stroke-width="1.5"%3E%3C/path%3E%3Cpath id="Vector_2" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M12.375 0.5892857142857143h2.357142857142857c0.31255714285714287 0 0.6123857142857142 0.12417075000000001 0.8333678571428571 0.34519532142857146 0.22098214285714285 0.22102575000000002 0.34520357142857144 0.5207953928571428 0.34520357142857144 0.8333761071428573v2.357142857142857" stroke-width="1.5"%3E%3C/path%3E%3Cpath id="Vector_3" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M0.5892857142857143 4.125v-2.357142857142857c0 -0.3125807142857143 0.12417075000000001 -0.6123503571428571 0.34519532142857146 -0.8333761071428573C1.1555067857142858 0.7134564642857143 1.4552764285714286 0.5892857142857143 1.7678571428571428 0.5892857142857143h2.357142857142857" stroke-width="1.5"%3E%3C/path%3E%3Cpath id="Vector_4" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M4.125 15.910714285714286h-2.357142857142857c-0.3125807142857143 0 -0.6123503571428571 -0.12422142857142857 -0.8333761071428573 -0.34520357142857144C0.7134564642857143 15.344528571428572 0.5892857142857143 15.0447 0.5892857142857143 14.732142857142858v-2.357142857142857" stroke-width="1.5"%3E%3C/path%3E%3Cpath id="Vector_5" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M8.249705357142856 7.660690714285714c1.3018028571428573 0 2.3571310714285714 -1.0553282142857143 2.3571310714285714 -2.3571310714285714S9.551508214285715 2.9464285714285716 8.249705357142856 2.9464285714285716c-1.3018146428571429 0 -2.3571310714285714 1.0553282142857143 -2.3571310714285714 2.3571310714285714s1.0553164285714285 2.3571310714285714 2.3571310714285714 2.3571310714285714Z" stroke-width="1.5"%3E%3C/path%3E%3Cpath id="Vector_6" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M12.732578571428572 12.964403571428571c-0.30454285714285717 -0.949575 -0.9026678571428572 -1.7777807142857145 -1.708197857142857 -2.3654046428571434 -0.8055417857142858 -0.5876357142857143 -1.7768967857142859 -0.9042707142857144 -2.7740035714285716 -0.9042707142857144 -0.9971067857142857 0 -1.96845 0.316635 -2.7740035714285716 0.9042707142857144 -0.8055535714285714 0.5876239285714285 -1.4036785714285716 1.415829642857143 -1.7081625 2.3654046428571434h8.9643675Z" stroke-width="1.5"%3E%3C/path%3E%3C/g%3E%3C/svg%3E') no-repeat center center / 110%;
+}
+
+.nav a:hover[href="/about"]{
+  order: 1;
+  text-indent: -1000px;
+  overflow: hidden;
+  width: 1.4em;
+  margin-left: 0.5em;
+  margin-right: 1.2em;
+background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.75 -0.75 18 18" height="18" width="18" id="User-Profile-Focus--Streamline-Core"%3E%3Cdesc%3EUser Profile Focus Streamline Icon: https://streamlinehq.com%3C/desc%3E%3Cg id="user-profile-focus--close-geometric-human-person-profile-focus-user"%3E%3Cpath id="Vector" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M15.910714285714286 12.375v2.357142857142857c0 0.31255714285714287 -0.12422142857142857 0.6123857142857142 -0.34520357142857144 0.8333678571428571s-0.5208107142857143 0.34520357142857144 -0.8333678571428571 0.34520357142857144h-2.357142857142857" stroke-width="1.5"%3E%3C/path%3E%3Cpath id="Vector_2" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M12.375 0.5892857142857143h2.357142857142857c0.31255714285714287 0 0.6123857142857142 0.12417075000000001 0.8333678571428571 0.34519532142857146 0.22098214285714285 0.22102575000000002 0.34520357142857144 0.5207953928571428 0.34520357142857144 0.8333761071428573v2.357142857142857" stroke-width="1.5"%3E%3C/path%3E%3Cpath id="Vector_3" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M0.5892857142857143 4.125v-2.357142857142857c0 -0.3125807142857143 0.12417075000000001 -0.6123503571428571 0.34519532142857146 -0.8333761071428573C1.1555067857142858 0.7134564642857143 1.4552764285714286 0.5892857142857143 1.7678571428571428 0.5892857142857143h2.357142857142857" stroke-width="1.5"%3E%3C/path%3E%3Cpath id="Vector_4" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M4.125 15.910714285714286h-2.357142857142857c-0.3125807142857143 0 -0.6123503571428571 -0.12422142857142857 -0.8333761071428573 -0.34520357142857144C0.7134564642857143 15.344528571428572 0.5892857142857143 15.0447 0.5892857142857143 14.732142857142858v-2.357142857142857" stroke-width="1.5"%3E%3C/path%3E%3Cpath id="Vector_5" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M8.249705357142856 7.660690714285714c1.3018028571428573 0 2.3571310714285714 -1.0553282142857143 2.3571310714285714 -2.3571310714285714S9.551508214285715 2.9464285714285716 8.249705357142856 2.9464285714285716c-1.3018146428571429 0 -2.3571310714285714 1.0553282142857143 -2.3571310714285714 2.3571310714285714s1.0553164285714285 2.3571310714285714 2.3571310714285714 2.3571310714285714Z" stroke-width="1.5"%3E%3C/path%3E%3Cpath id="Vector_6" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M12.732578571428572 12.964403571428571c-0.30454285714285717 -0.949575 -0.9026678571428572 -1.7777807142857145 -1.708197857142857 -2.3654046428571434 -0.8055417857142858 -0.5876357142857143 -1.7768967857142859 -0.9042707142857144 -2.7740035714285716 -0.9042707142857144 -0.9971067857142857 0 -1.96845 0.316635 -2.7740035714285716 0.9042707142857144 -0.8055535714285714 0.5876239285714285 -1.4036785714285716 1.415829642857143 -1.7081625 2.3654046428571434h8.9643675Z" stroke-width="1.5"%3E%3C/path%3E%3C/g%3E%3C/svg%3E') no-repeat center center / 110%;
+}
+
+.nav a[href="/triangle"]{
+  order: 1;
+  text-indent: -1000px;
+  overflow: hidden;
+  width: 1.3em;
+  margin-left: 0.5em;
+  margin-right: 1.2em;
+  margin-bottom: 0.3em;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.75 -0.75 14 14" height="14" width="14" id="Warning-Triangle--Streamline-Core"%3E%3Cdesc%3EWarning Triangle Streamline Icon: https://streamlinehq.com%3C/desc%3E%3Cg id="warning-triangle--frame-alert-warning-triangle-exclamation-caution"%3E%3Cpath id="Vector" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M7.044669642857143 0.9374107142857144C6.969741071428572 0.7911580357142858 6.855901785714286 0.6684214285714286 6.715696428571429 0.5827160714285715 6.575491071428572 0.4970098214285715 6.414348214285715 0.4516598214285714 6.250026785714286 0.4516598214285714c-0.16433035714285715 0 -0.3254732142857143 0.04535 -0.4656785714285715 0.13105625 -0.14020535714285715 0.08570535714285715 -0.2540446428571429 0.2084419642857143 -0.3289642857142857 0.35469464285714286l-4.910717857142857 9.821428571428571c-0.06849107142857143 0.13589285714285715 -0.10110000000000001 0.28705357142857146 -0.09473035714285714 0.4391964285714286 0.006369642857142858 0.15205357142857145 0.05150714285714286 0.2999107142857143 0.13112589285714285 0.42964285714285716 0.07961785714285714 0.12973214285714288 0.19107410714285716 0.23696428571428574 0.3237866071428572 0.31142857142857144 0.13270535714285717 0.07455357142857144 0.2822589285714286 0.11392857142857142 0.4344642857142857 0.114375H11.160714285714286c0.15223214285714287 -0.00044642857142857147 0.3017857142857143 -0.03982142857142858 0.4344642857142857 -0.114375 0.13276785714285716 -0.07446428571428572 0.2441964285714286 -0.18169642857142856 0.3238392857142858 -0.31142857142857144 0.07955357142857143 -0.12973214285714288 0.12473214285714286 -0.27758928571428576 0.1310714285714286 -0.42964285714285716 0.0064285714285714285 -0.15214285714285714 -0.02625 -0.30330357142857145 -0.09473214285714286 -0.4391964285714286l-4.910687500000001 -9.821428571428571Z" stroke-width="1.3"%3E%3C/path%3E%3Cpath id="Vector_2" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M6.25 4.464285714285714v2.9017857142857144" stroke-width="0"%3E%3C/path%3E%3Cg id="Group 2605"%3E%3Cpath id="Ellipse 1111" stroke="" stroke-linecap="round" stroke-linejoin="round" d="M6.25 9.821428571428571c-0.12327678571428571 0 -0.22321428571428573 -0.0999107142857143 -0.22321428571428573 -0.22321428571428573s0.09993750000000001 -0.22321428571428573 0.22321428571428573 -0.22321428571428573" stroke-width="0"%3E%3C/path%3E%3Cpath id="Ellipse 1112" stroke="" stroke-linecap="round" stroke-linejoin="round" d="M6.25 9.821428571428571c0.12327678571428571 0 0.22321428571428573 -0.0999107142857143 0.22321428571428573 -0.22321428571428573s-0.09993750000000001 -0.22321428571428573 -0.22321428571428573 -0.22321428571428573" stroke-width="1.3"%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E') no-repeat center center / 103%;
+}
+
+.nav a:hover[href="/triangle"]{
+  order: 1;
+  text-indent: -1000px;
+  overflow: hidden;
+  width: 1.3em;
+  margin-left: 0.5em;
+  margin-right: 1.2em;
+  margin-bottom: 0.3em;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.75 -0.75 14 14" height="14" width="14" id="Warning-Triangle--Streamline-Core"%3E%3Cdesc%3EWarning Triangle Streamline Icon: https://streamlinehq.com%3C/desc%3E%3Cg id="warning-triangle--frame-alert-warning-triangle-exclamation-caution"%3E%3Cpath id="Vector" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M7.044669642857143 0.9374107142857144C6.969741071428572 0.7911580357142858 6.855901785714286 0.6684214285714286 6.715696428571429 0.5827160714285715 6.575491071428572 0.4970098214285715 6.414348214285715 0.4516598214285714 6.250026785714286 0.4516598214285714c-0.16433035714285715 0 -0.3254732142857143 0.04535 -0.4656785714285715 0.13105625 -0.14020535714285715 0.08570535714285715 -0.2540446428571429 0.2084419642857143 -0.3289642857142857 0.35469464285714286l-4.910717857142857 9.821428571428571c-0.06849107142857143 0.13589285714285715 -0.10110000000000001 0.28705357142857146 -0.09473035714285714 0.4391964285714286 0.006369642857142858 0.15205357142857145 0.05150714285714286 0.2999107142857143 0.13112589285714285 0.42964285714285716 0.07961785714285714 0.12973214285714288 0.19107410714285716 0.23696428571428574 0.3237866071428572 0.31142857142857144 0.13270535714285717 0.07455357142857144 0.2822589285714286 0.11392857142857142 0.4344642857142857 0.114375H11.160714285714286c0.15223214285714287 -0.00044642857142857147 0.3017857142857143 -0.03982142857142858 0.4344642857142857 -0.114375 0.13276785714285716 -0.07446428571428572 0.2441964285714286 -0.18169642857142856 0.3238392857142858 -0.31142857142857144 0.07955357142857143 -0.12973214285714288 0.12473214285714286 -0.27758928571428576 0.1310714285714286 -0.42964285714285716 0.0064285714285714285 -0.15214285714285714 -0.02625 -0.30330357142857145 -0.09473214285714286 -0.4391964285714286l-4.910687500000001 -9.821428571428571Z" stroke-width="1.3"%3E%3C/path%3E%3Cpath id="Vector_2" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M6.25 4.464285714285714v2.9017857142857144" stroke-width="0"%3E%3C/path%3E%3Cg id="Group 2605"%3E%3Cpath id="Ellipse 1111" stroke="" stroke-linecap="round" stroke-linejoin="round" d="M6.25 9.821428571428571c-0.12327678571428571 0 -0.22321428571428573 -0.0999107142857143 -0.22321428571428573 -0.22321428571428573s0.09993750000000001 -0.22321428571428573 0.22321428571428573 -0.22321428571428573" stroke-width="0"%3E%3C/path%3E%3Cpath id="Ellipse 1112" stroke="" stroke-linecap="round" stroke-linejoin="round" d="M6.25 9.821428571428571c0.12327678571428571 0 0.22321428571428573 -0.0999107142857143 0.22321428571428573 -0.22321428571428573s-0.09993750000000001 -0.22321428571428573 -0.22321428571428573 -0.22321428571428573" stroke-width="1.3"%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E') no-repeat center center / 103%;
+}
+
+.nav a:hover[href="/search"] {
+  order: 2;
+  text-indent: -1000px;
+  overflow: hidden;
+  width: 1.2em;
+  margin-left: 0.5em;
+  margin-right: 1em;  
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-1 -1 18 18" height="18" width="18"%3E%3Cg id="magnifying-glass--glass-search-magnifying"%3E%3Cpath id="Vector" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M6.857142857142858 13.142857142857144c3.471508571428572 0 6.2857142857142865 -2.8142057142857144 6.2857142857142865 -6.2857142857142865S10.328651428571431 0.5714285714285715 6.857142857142858 0.5714285714285715 0.5714285714285715 3.385634285714286 0.5714285714285715 6.857142857142858s2.8142057142857144 6.2857142857142865 6.2857142857142865 6.2857142857142865Z" stroke-width="2"%3E%3C/path%3E%3Cpath id="Vector_2" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M15.42857142857143 15.42857142857143 11.42857142857143 11.42857142857143" stroke-width="2"%3E%3C/path%3E%3C/g%3E%3C/svg%3E') no-repeat center center / 100%;
+}
+
+.nav a[href="/search"] {
+  order: 2;
+  text-indent: -1000px;
+  overflow: hidden;
+  width: 1.2em;
+  margin-left: 0.5em;
+  margin-right: 1em;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-1 -1 18 18" height="18" width="18"%3E%3Cg id="magnifying-glass--glass-search-magnifying"%3E%3Cpath id="Vector" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M6.857142857142858 13.142857142857144c3.471508571428572 0 6.2857142857142865 -2.8142057142857144 6.2857142857142865 -6.2857142857142865S10.328651428571431 0.5714285714285715 6.857142857142858 0.5714285714285715 0.5714285714285715 3.385634285714286 0.5714285714285715 6.857142857142858s2.8142057142857144 6.2857142857142865 6.2857142857142865 6.2857142857142865Z" stroke-width="2"%3E%3C/path%3E%3Cpath id="Vector_2" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M15.42857142857143 15.42857142857143 11.42857142857143 11.42857142857143" stroke-width="2"%3E%3C/path%3E%3C/g%3E%3C/svg%3E') no-repeat center center / 100%;
+}
+
+
+.nav a[href="/feed.rss"] {
+  order: 2;
+  text-indent: -1000px;
+  overflow: hidden;
+  width: 1.2em;
+  margin-left: 0.5em;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-1 -1 18 18" height="18" width="18"%3E%3Cg id="rss-symbol--wireless-feed-rss-transmit-broadcast"%3E%3Cpath id="Vector" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M2.434297142857143 15.291314285714288c0.9467657142857144 0 1.7142742857142859 -0.7675428571428572 1.7142742857142859 -1.7142857142857144s-0.7675085714285715 -1.7142857142857144 -1.7142742857142859 -1.7142857142857144c-0.946777142857143 0 -1.7142914285714288 0.7675428571428572 -1.7142914285714288 1.7142857142857144s0.7675142857142858 1.7142857142857144 1.7142914285714288 1.7142857142857144Z" stroke-width="2"%3E%3C/path%3E%3Cpath id="Vector_2" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M15.291428571428574 13.85154285714286c0 -1.7259428571428574 -0.34 -3.434971428571429 -1.000457142857143 -5.0295314285714285 -0.660457142857143 -1.594571428571429 -1.6285714285714288 -3.0434285714285716 -2.849028571428572 -4.263851428571429C10.221554285714289 3.337737142857143 8.772697142857144 2.369634285714286 7.178125714285715 1.7091428571428575 5.583565714285715 1.0486560000000003 3.874525714285715 0.708705142857143 2.1485714285714286 0.708705142857143" stroke-width="2"%3E%3C/path%3E%3Cpath id="Vector_3" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M2.4228571428571435 6.148434285714287c0.9755314285714287 0 1.9415085714285716 0.19214857142857145 2.8427885714285717 0.5654742857142858 0.9012685714285716 0.37331428571428577 1.7201942857142858 0.9205028571428573 2.4100000000000006 1.6103085714285716 0.6898057142857144 0.6898057142857144 1.236994285714286 1.5087200000000003 1.6103085714285716 2.4100000000000006 0.37332571428571437 0.9013257142857144 0.5654742857142858 1.8672685714285717 0.5654742857142858 2.8428114285714288" stroke-width="2"%3E%3C/path%3E%3C/g%3E%3C/svg%3E') no-repeat center center / 100%;
+}
+
+.nav a:hover[href="/feed.rss"] {
+  order: 2;
+  text-indent: -1000px;
+  overflow: hidden;
+  width: 1.2em;
+  margin-left: 0.5em;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-1 -1 18 18" height="18" width="18"%3E%3Cg id="rss-symbol--wireless-feed-rss-transmit-broadcast"%3E%3Cpath id="Vector" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M2.434297142857143 15.291314285714288c0.9467657142857144 0 1.7142742857142859 -0.7675428571428572 1.7142742857142859 -1.7142857142857144s-0.7675085714285715 -1.7142857142857144 -1.7142742857142859 -1.7142857142857144c-0.946777142857143 0 -1.7142914285714288 0.7675428571428572 -1.7142914285714288 1.7142857142857144s0.7675142857142858 1.7142857142857144 1.7142914285714288 1.7142857142857144Z" stroke-width="2"%3E%3C/path%3E%3Cpath id="Vector_2" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M15.291428571428574 13.85154285714286c0 -1.7259428571428574 -0.34 -3.434971428571429 -1.000457142857143 -5.0295314285714285 -0.660457142857143 -1.594571428571429 -1.6285714285714288 -3.0434285714285716 -2.849028571428572 -4.263851428571429C10.221554285714289 3.337737142857143 8.772697142857144 2.369634285714286 7.178125714285715 1.7091428571428575 5.583565714285715 1.0486560000000003 3.874525714285715 0.708705142857143 2.1485714285714286 0.708705142857143" stroke-width="2"%3E%3C/path%3E%3Cpath id="Vector_3" stroke="%23d16648" stroke-linecap="round" stroke-linejoin="round" d="M2.4228571428571435 6.148434285714287c0.9755314285714287 0 1.9415085714285716 0.19214857142857145 2.8427885714285717 0.5654742857142858 0.9012685714285716 0.37331428571428577 1.7201942857142858 0.9205028571428573 2.4100000000000006 1.6103085714285716 0.6898057142857144 0.6898057142857144 1.236994285714286 1.5087200000000003 1.6103085714285716 2.4100000000000006 0.37332571428571437 0.9013257142857144 0.5654742857142858 1.8672685714285717 0.5654742857142858 2.8428114285714288" stroke-width="2"%3E%3C/path%3E%3C/g%3E%3C/svg%3E') no-repeat center center / 100%;
+}
+
+input#search {
+  font-size: 1em;
+  padding: .5em 1em .5em 2.3em;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-1 -1 18 18" height="18" width="18"%3E%3Cg id="magnifying-glass--glass-search-magnifying"%3E%3Cpath id="Vector" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M6.857142857142858 13.142857142857144c3.471508571428572 0 6.2857142857142865 -2.8142057142857144 6.2857142857142865 -6.2857142857142865S10.328651428571431 0.5714285714285715 6.857142857142858 0.5714285714285715 0.5714285714285715 3.385634285714286 0.5714285714285715 6.857142857142858s2.8142057142857144 6.2857142857142865 6.2857142857142865 6.2857142857142865Z" stroke-width="2"%3E%3C/path%3E%3Cpath id="Vector_2" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M15.42857142857143 15.42857142857143 11.42857142857143 11.42857142857143" stroke-width="2"%3E%3C/path%3E%3C/g%3E%3C/svg%3E') 1em center/0.8em no-repeat;
+  border-radius: 3em;
+  width: 103.5%;
+  color: {{text_color}};
+  box-sizing: border-box;
+  margin: 0 .66em 1em -.3em;
+  border: 1px solid rgba({{#rgb}}{{text_color}}{{/rgb}}, 0.33);
+}
+
+input#search:focus {
+  outline: none;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-1 -1 18 18" height="18" width="18"%3E%3Cg id="magnifying-glass--glass-search-magnifying"%3E%3Cpath id="Vector" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M6.857142857142858 13.142857142857144c3.471508571428572 0 6.2857142857142865 -2.8142057142857144 6.2857142857142865 -6.2857142857142865S10.328651428571431 0.5714285714285715 6.857142857142858 0.5714285714285715 0.5714285714285715 3.385634285714286 0.5714285714285715 6.857142857142858s2.8142057142857144 6.2857142857142865 6.2857142857142865 6.2857142857142865Z" stroke-width="2"%3E%3C/path%3E%3Cpath id="Vector_2" stroke="%233b5a78" stroke-linecap="round" stroke-linejoin="round" d="M15.42857142857143 15.42857142857143 11.42857142857143 11.42857142857143" stroke-width="2"%3E%3C/path%3E%3C/g%3E%3C/svg%3E') 1em center/0.8em no-repeat;
+  border: 1px solid {{text_color}};  
+}
+
+::-webkit-input-placeholder {
+   color: {{text_color}};
+   opacity: 0.33;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: {{text_color}};
+   opacity: 0.33;   
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: {{text_color}};
+   opacity: 0.33;   
+}
+
+:-ms-input-placeholder {
+   color: {{text_color}};
+   opacity: 0.33;   
+}
+
+.date {margin-top: 10px;text-decoration: none;}
+.date:empty {display: none;}
+
+/* Pagination */
+.pagination {
+  text-align: center;
+  margin: 72px 0 144px;
+  font-size: .875em;color: {{text_color}};opacity:0.5
+}
+
+.pagination a {margin: 0 1em;background: none}
+
+/* Hide the footnotes on the homepage */
+.entry.on-index-page .footnotes {display: none;}
+
+.footnotes > ol:before {
+     content: "Footnotes";
+     position: absolute;
+     top: 0;
+     left: 0 
+}
+
+.footnotes {
+    margin-top: 4rem
+}
+
+.footnotes > ol {
+    position:relative;
+    padding: 0;
+    font-size: 0.875em;
+    opacity: 0.8;
+    padding-left: 110px
+}
+.footnotes > ol li {
+    margin-left: 20px;
+    padding-left: 10px
+}
+.footnotes > ol li::marker {
+     color: {{text_color}};
+}
+ .footnote-back {text-decoration: none;margin-left: 0.5rem}
+ .footnote-back:before {
+    content: "["
+}
+ .footnote-back:after {
+    content: "]"
+}
+ .footnote-ref {
+    text-decoration: none;
+    font-variant-numeric: tabular-nums;
+}
+ .footnote-ref sup {
+    line-height: 0
+}
+ .footnote-ref sup:before {
+     content: "[" 
+}
+
+ .footnote-ref sup:after {
+     content: "]" 
+}
+
+
+/* The fixed header interferes with the correct scroll offset for footnotes*/
+.entry [id] {
+ scroll-margin-top: 8rem;
+}
+
+hr.minimal,
+.footnotes hr {border-bottom:1px solid;}
+
+.footnotes > ol:before,
+.left-label h5 {font-size: 0.875em;font-weight: 600;color:rgba({{#rgb}}{{text_color}}{{/rgb}}, 0.5);margin-bottom: 24px;}
+
+.left-label h5 {margin-top: 1em;position: absolute;top: 0;left: 0}
+.rounded-link {border-bottom:1px solid rgba(0,0,0,0.1);text-decoration: none;color:inherit;display: block;margin-bottom: 1rem;padding-bottom: 1rem}
+.rounded-link:last-child {border-bottom: none;}
+.rounded-link .title {display: block;margin-bottom: 0.5rem;color:{{accent_color}};text-decoration:underline}
+.rounded-link .summary {opacity: 0.8;max-height: 2.8em;overflow: hidden;display: block;}
+.left-label {
+padding-left: 140px;padding-top: 1rem;font-size:0.875em
+}
+.left-label .tag {
+margin:0 1rem 0 0
+}
+
+
+@media screen and (max-width: 600px) {
+  .entry .twitter-tweet {margin-left: 0!important}
+  div.header {
+    text-align: center !important; 
+    }
+  div.header #logo, div.header #logo img, div.header .nav {
+    text-align: center !important;
+    width: 100%;
+    margin: 0 0 0 0;
+    display: flex;
+     -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center
+    }
+    
+  .nav a {
+  order: 1;
+  padding-top: 0.2em;
+  margin-bottom: 0.4em;
+}
+  
+  #logo img {
+    padding-right: 0.5em
+  }
+
+  div.header, .container {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem
+  }
+  
+  .left {
+  	float: left;
+  	width: 70%;
+  }
+
+  .right {
+  	float: right;
+  	text-align: right;
+  	width: 30%;
+  	margin-top: -.1em;
+  }
+  
+  .main, .margin {width: 100%;}
+  .wide {width: 100vw;margin-left: -2rem;margin-right: -2rem}
+  .wide.right {margin-left: 0;margin-right: 0;width:100%;}
+  .margin {left: auto;position: relative;padding-left: 0}
+}
+
+@media screen and (max-width: 730px) {
+  
+  .nav .right {clear: both;float: none;margin-top: 3px}
+  a.search {margin-left: 0}
+
+  .footnotes>ol{padding-left: 0;padding-top: 1rem}
+  .left-label {padding-left: 0;padding-top: 3rem}
+}
+
+@media screen and (max-width: 400px) {
+  .entry .twitter-tweet {margin-left: 0!important}
+  div.header {
+    display: flex;
+    flex-direction: column;
+  }
+  div.header #logo, div.header .tags, div.header .nav {margin: 0 0 0.5em 0;}
+
+  div.header, .container {
+    padding-left: 1rem;
+    padding-right: 1rem
+  }
+  .wide {width: 100vw;margin-left: -1rem;margin-right: -1rem}
+  .caption {padding-left: 1rem;padding-right: 1rem}
+}
